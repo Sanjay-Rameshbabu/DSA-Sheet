@@ -1,0 +1,34 @@
+// Input: words = ["aba","bcb","ece","aa","e"], queries = [[0,2],[1,4],[1,1]]
+// Output: [2,3,0]
+// Explanation: The strings starting and ending with a vowel are "aba", "ece", "aa" and "e".
+// The answer to the query [0,2] is 2 (strings "aba" and "ece").
+// to query [1,4] is 3 (strings "ece", "aa", "e").
+// to query [1,1] is 0.
+// We return [2,3,0].
+class Solution {
+    private boolean isVowel(char s){
+         if(s=='a'||s=='e'||s=='i'||s=='o'||s=='u'){
+            return true;
+         }
+         return false;
+    }
+    public int[] vowelStrings(String[] words, int[][] queries) {
+        int[]ans=new int[queries.length];
+       
+        
+        for(int i=0;i<queries.length;i++){
+            int start=queries[i][0];
+            int end=queries[i][1];
+            int count =0;
+            for(int j=start;j<=end;j++){
+                if(words[j].charAt(0)==words[j].charAt(words[j].length()-1)){
+                    if(isVowel(words[j].charAt(0))){
+                        count++;
+                    }   
+                }
+                ans[i]=count;
+            }
+        }
+        return ans;
+    }
+}
