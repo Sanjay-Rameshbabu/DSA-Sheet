@@ -1,0 +1,35 @@
+/*2574. Left and Right Sum Differences
+Input: nums = [10,4,8,3]
+Output: [15,1,11,22]
+Explanation: The array leftSum is [0,10,14,22] and the array rightSum is [15,11,3,0].
+The array answer is [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22].*/
+import java.util.*;
+class Main {
+     public static int[] leftRightDifference(int[] nums) {
+       if(nums.length==0) return new int[0];
+        int n=nums.length;
+        int[]leftsum=new int[n];
+        int[]rightsum=new int[n];
+        int[]ans=new int[n];
+        leftsum[0]=0;
+        rightsum[n-1]=0;
+
+        for(int i=1;i<n;i++){
+            leftsum[i]=nums[i-1]+leftsum[i-1];
+        }
+        for(int i=n-2;i>=0;i--){
+            rightsum[i]=nums[i+1]+rightsum[i+1];
+        }
+        for(int i=0;i<n;i++){
+            ans[i]=Math.abs(leftsum[i]-rightsum[i]);
+        }
+        return ans;
+     }
+    public static void main(String[] args) {
+        int[]nums={10,4,8,3};
+        int[]result=leftRightDifference(nums);
+        for(int i=0;i<nums.length;i++){
+            System.out.print(result[i]+" ");
+        }
+    }
+}
