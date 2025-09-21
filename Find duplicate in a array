@@ -1,0 +1,26 @@
+//Problem: Given an array, find all duplicate elements
+//Input: [1, 2, 3, 2, 4, 1, 5]
+//Output: [1, 2]
+
+import java.util.*;
+class Main {
+    
+    public static List<Integer> removeDuplicate(int [] num){
+        Set<Integer>seen=new HashSet<>();
+        Set<Integer>dup=new HashSet<>();
+        for(int i=0;i<num.length;i++){
+            if(seen.contains(num[i])){
+                dup.add(num[i]);
+            }
+            else{
+                seen.add(num[i]);
+            }
+        }
+        return new ArrayList<>(dup);
+    }
+    public static void main(String[] args) {
+     int [] num ={1,2,4,5,5,4,6,6};
+     List<Integer> ans =removeDuplicate(num);
+     System.out.println(ans);
+    }
+}
